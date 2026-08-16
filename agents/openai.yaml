@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multi-Agent Engineering Workflow"
+  short_description: "Gate 化多 Agent 协作研发流程：审计/护栏/设计/实施/回归"
+  default_prompt: "Use $multi-agent-engineering to run this project through the gated audit to invariant to design to implementation to regression workflow."

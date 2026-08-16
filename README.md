@@ -1,104 +1,106 @@
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 # multi-agent-engineering
 
-> 测试版 v0.1.0 · 个人自制 Codex Skill · Gate 化多 Agent 协作研发工作流
+> Beta v0.1.0 · Personal Codex Skill · Gate-based Multi-Agent Engineering Workflow
 
-**一句话定位：把软件的改动从"直接动手"变成"五道可验证的 Gate"——只读审计 → 不变量护栏 → 设计批准 → 分阶段实施 → 独立回归，按任务规模缩放，让 AI 改得安全、改得可审计。**
-
----
-
-## 定位
-
-### 这是什么
-
-- **轻量工程流程护栏**：不替项目写代码，只把改动过程变成可验证的 Gate
-- **AI 可执行的协作流程**：六个临时角色 + 交接模板 + Gate 验收，过程有载体、不靠聊天记录
-- **通用**：适用于 CLI / Web / 数据 / 自动化脚本等软件项目，也适用于非代码工程流程
-- **按规模缩放**：Spike / Bounded / Architectural 三档，小任务不被流程压垮
-- **纯 Markdown**：零依赖、可审计、可版本化、可移植
-
-### 这不是什么
-
-- ❌ 不是 Agent 编排框架——不建 Agent Registry、DAG、Orchestrator
-- ❌ 不是任务管理系统——不替代 issue / todo
-- ❌ 不是代码生成器——不替 AI 写功能，只约束"怎么改"
-- ❌ 不是安全扫描器——技能安全审查请用 [skillspector-scan](https://github.com/Wuqi24/skillspector-scan)
-
-### 为什么用它
-
-**问题**：AI 直接改代码，边界易被破坏、回归难验证、多角色协作只能靠聊天记录。
-
-**方案**：把工程推进 Gate 化——每道 Gate 有明确的 Input / Allowed / Forbidden / Artifacts / Acceptance，改动可验证、过程可审计、交接有模板。Input 不完整自动 HOLD，Gate 不可跳过。
+**One-liner: turn code changes from "just do it" into five verifiable Gates — Read-Only Audit → Invariant Guardrails → Design Approval → Staged Implementation → Independent Regression — scaled by task size, so AI changes are safe and auditable.**
 
 ---
 
-## 五道 Gate
+## Positioning
 
-| Gate | 名称 | 目标 | 关键约束 |
+### What It Is
+
+- **Lightweight engineering workflow guardrails**: doesn't write project code; only turns the change process into verifiable Gates
+- **An executable collaboration workflow for AI**: six temporary roles + handoff templates + Gate acceptance; process has artifacts, not just chat history
+- **Generic**: works for CLI / Web / Data / automation scripts, and non-code engineering workflows
+- **Scaled by size**: Spike / Bounded / Architectural — small tasks aren't crushed by process
+- **Pure Markdown**: zero dependencies, auditable, versionable, portable
+
+### What It Is Not
+
+- ✗ Not an agent orchestration framework — no Agent Registry, DAG, or Orchestrator
+- ✗ Not a task manager — doesn't replace issue / todo
+- ✗ Not a code generator — doesn't write features; only constrains how changes are made
+- ✗ Not a security scanner — use [skillspector-scan](https://github.com/Wuqi24/skillspector-scan) for skill security review
+
+### Why Use It
+
+**Problem**: AI changes code directly; boundaries get broken, regression is hard to verify, and multi-role collaboration depends on chat history.
+
+**Solution**: Gate the engineering process — every Gate has explicit Input / Allowed / Forbidden / Artifacts / Acceptance. Incomplete input auto-HOLDs; Gates cannot be skipped.
+
+---
+
+## Five Gates
+
+| Gate | Name | Goal | Key Constraint |
 |---|---|---|---|
-| Phase 0 | Audit | 只读审计，产出现状与风险 | 不修改代码 |
-| Phase 1 | Invariant | 把架构边界固化为可验证约束 | 测试保护，不重构 |
-| Phase 2 | Design | 设计先行，产出批准方案 | 未批准不实施 |
-| Phase 3 | Implementation | 最小修改，守住冻结边界 | 不做范围外改动 |
-| Phase 4 | Regression | 独立恢复/验证基线 | 不改产品行为 |
+| Phase 0 | Audit | Read-only audit; current state & risks | No code changes |
+| Phase 1 | Invariant | Freeze architecture boundaries as verifiable constraints | Test protection, no refactor |
+| Phase 2 | Design | Design first; produce an approved plan | No implementation before approval |
+| Phase 3 | Implementation | Minimal changes within frozen boundaries | No scope creep |
+| Phase 4 | Regression | Independently restore / verify the baseline | No product behavior changes |
 
-## 规模缩放
+## Scaling
 
-| 路径 | 流程 | 适用 |
+| Path | Flow | When |
 |---|---|---|
-| Spike | P0 → P2 → P3 | 小实验、单文件、无长期维护 |
-| Bounded | P0 → P1 → P2 → P3 | 小功能、局部修改 |
-| Architectural | P0 → P4（完整） | 数据模型/身份/核心边界变化 |
+| Spike | P0 → P2 → P3 | Small experiment, single file, no long-term maintenance |
+| Bounded | P0 → P1 → P2 → P3 | Small feature, localized change |
+| Architectural | P0 → P4 (full) | Data model / identity / core boundary changes |
 
-缩放只减少流程数量，不取消 Gate 判断；Spike 不是永久绕过，进入实施/维护/架构变化时必须升级。
+Scaling only reduces the number of phases, never the Gate checks. Spike is not a permanent bypass — upgrade is required when entering implementation, long-term maintenance, or architectural change.
 
-## 六角色
+## Six Roles
 
-临时任务角色，不是永久 Agent：**Auditor / Architect / Implementer / Reviewer / Regression / Documentation**。每个角色都有职责、输入、输出与禁止事项，边界不重叠（Auditor 只读、Architect 只设计、Implementer 不扩范围、Reviewer 独立、Regression 不改产品行为、Documentation 不宣称未验证事实）。
+Temporary task roles, not permanent agents: **Auditor / Architect / Implementer / Reviewer / Regression / Documentation**. Each has its own responsibilities, inputs, outputs, and prohibitions with no overlapping boundaries (Auditor is read-only, Architect designs only, Implementer never expands scope, Reviewer stays independent, Regression never changes product behavior, Documentation never claims unverified facts).
 
 ---
 
-## 快速上手
+## Quick Start
 
-### 安装
+### Install
 
 ```powershell
 git clone https://github.com/Wuqi24/multi-agent-engineering.git "$HOME\.codex\skills\multi-agent-engineering"
 ```
 
-重启 Codex 后生效。也可以从 [Release](https://github.com/Wuqi24/multi-agent-engineering/releases) 下载 zip 解压到技能目录。
+Restart Codex to activate. You can also download the zip from [Release](https://github.com/Wuqi24/multi-agent-engineering/releases) and extract it into your skills directory.
 
-### 触发示例
+### Example Triggers
 
-- "按 Gate 流程推进这个项目"
-- "先做只读架构审计再动手"
-- "给这个模块建立回归护栏/不变量测试"
-- "拆 Agent 协作，先出交接方案"
-- "风险改动分阶段落地"
+- "Run this project through the Gate workflow"
+- "Do a read-only architecture audit before touching anything"
+- "Add regression guardrails / invariant tests for this module"
+- "Split the work across agents; produce a handoff plan first"
+- "Land risky changes in stages"
 
 ---
 
-## 目录结构
+## Directory Structure
 
 ```text
 multi-agent-engineering/
-├── SKILL.md            # 入口与触发条件（<300 行）
-├── agents/             # Agent 配置
-├── roles/              # 六角色定义
-├── phases/             # 五 Gate 定义
+├── SKILL.md            # Entry point & trigger conditions (<300 lines)
+├── agents/             # Agent configuration
+├── roles/              # Six role definitions
+├── phases/             # Five Gate definitions
 ├── templates/          # handoff / gate-review / phase-report
 ├── checklists/         # preflight / regression-proof / commit-boundary
 ├── rules/              # identity-boundaries / commit-strategy / scaling / escalation
-└── extensions/         # audit-history / traceability / compliance（可选扩展）
+└── extensions/         # audit-history / traceability / compliance (optional)
 ```
 
 ---
 
-## 版本历史
+## Version History
 
-| 版本 | 日期 | 说明 |
+| Version | Date | Notes |
 |---|---|---|
-| 0.1.0 | 2026-08-16 | 测试版：基于 skillspector-scan 演进提炼的通用工程流程，首次独立发布 |
+| 0.1.0 | 2026-08-16 | Beta: a general engineering workflow distilled from skillspector-scan evolution; first standalone release |
 
-## 责任声明
+## Disclaimer
 
-本 Skill 为个人自制测试版本，按"现状"提供，不提供任何明示或暗示的保证。使用者应自行审查其内容与适用性；因使用本 Skill 造成的任何直接或间接损失，作者不承担责任。安装/使用前请自行做安全审查。
+Personal, beta-quality skill provided AS-IS, without any express or implied warranty. Review before install; the author is not liable for any direct or indirect loss.

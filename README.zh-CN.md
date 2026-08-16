@@ -1,7 +1,6 @@
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-# multi-agent-engineering
-
+# multi-agent-engineering 中文文档
 > 测试版 v0.1.0 · 个人自制 Codex Skill · Gate 化多 Agent 协作研发工作流
 
 **一句话定位：把软件的改动从"直接动手"变成"五道可验证的 Gate"——只读审计 → 不变量护栏 → 设计批准 → 分阶段实施 → 独立回归，按任务规模缩放，让 AI 改得安全、改得可审计。**
